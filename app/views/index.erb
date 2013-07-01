@@ -3,4 +3,13 @@
   <%# TODO: 
   1. If user is not signed in - display "Welcome".
   2. If user is signed in then  display all users %>
+    <h2>Welcome</h1>
+
+  <% unless current_user.blank? %>
+    <% @users.each do |user| %>
+      <% unless user.is_admin %>
+        <%= erb :user, locals: {:user => user} %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
