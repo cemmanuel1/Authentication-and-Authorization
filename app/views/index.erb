@@ -3,13 +3,23 @@
   <%# TODO: 
   1. If user is not signed in - display "Welcome".
   2. If user is signed in then  display all users %>
-    <h2>Welcome</h1>
+  <div class="screen">
+    <% if !session[:user_id]%>
+    <%="<h1>"+"Welcome to Chantauthication"+"</h2>"%>  
+    <br>
+    <img class="lock" src="/lock.gif"> </img>
+    <br>
+    <%="Please sign in or create an account"%>  
+    <br>
+    <br>
 
-  <% unless current_user.blank? %>
+    <% else %>
+    <h2>All Users:</h2>
     <% @users.each do |user| %>
-      <% unless user.is_admin %>
-        <%= erb :user, locals: {:user => user} %>
-      <% end %>
+    <%= user.name %><br>
+    <%= user.email %><br>
+    <br>
     <% end %>
-  <% end %>
+    <% end %>
+  </div>
 </div>
